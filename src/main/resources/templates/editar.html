@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar ToDo</title>
+</head>
+<body>
+    <form action="editar" method="put">
+        <fieldset>
+            <legend>Editar</legend>
+            <label for="nome">Nome</label>
+            <input type="hidden" name="id" id="id" th:value="${todo.getId()}">
+
+            <input type="text" name="nome" id="nome" th:value="${todo.getNome()}">
+            <br>
+            <label for="descricao">Descrição</label>
+            <input type="text" name="descricao" id="descricao" th:value="${todo.getDescricao()}">
+            <br>
+            <label for="prioridade">Prioridade</label>
+            <input type="number" name="prioridade" id="prioridade" th:value="${todo.getPrioridade()}">
+
+            <br>
+            <button>Enviar</button>
+        </fieldset>
+    </form>
+</body>
+</html>

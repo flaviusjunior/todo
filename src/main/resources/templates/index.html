@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilização básica */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .icon {
+            cursor: pointer;
+            margin: 0 10px;
+            color: #333;
+        }
+        .icon:hover {
+            color: #007BFF; /* Cor ao passar o mouse por cima */
+        }
+
+        .prioridade {
+            text-align: right;
+        }
+
+        .editar, .excluir {
+            text-align: center;
+        }
+
+        a {
+            appearance: auto;
+            text-rendering: auto;
+            color: buttontext;
+            letter-spacing: normal;
+            word-spacing: normal;
+            line-height: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: center;
+            align-items: flex-start;
+            cursor: default;
+            box-sizing: border-box;
+            background-color: buttonface;
+            margin: 0em;
+            padding-block: 1px;
+            padding-inline: 6px;
+            border: 1px solid;
+            border-radius: 4px;
+            border-style: outset;
+            border-color: buttonborder;
+            border-image: initial;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lista de Tarefas (ToDo list)</h1>
+
+    <table border="1" cellpadding="3">
+        <thead>
+            <tr>
+                <td colspan="6">
+                    <form method="get">
+                        <label for="nome">Nome</label>
+                        <input type="search" placeholder="Pesquisar..." name="nome" id="nome" th:value="${nome}">
+                        <button>
+                            <i class="fa fa-search icon" title="Deletar"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            <tr align="center">
+                <th>
+                </th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Prioridade</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todo : ${todos}">
+                <td>
+                    <input type="checkbox" align="center" th:checked="${todo.isRealizado()}">
+                </td>
+                <td th:text="${todo.getNome()}"></td>
+                <td th:text="${todo.getDescricao()}"></td>
+                <td class="prioridade" th:text="${todo.getPrioridade()}"></td>
+                <td class="editar">
+                    <a th:href="${todo.getId()}">
+                        <i class="fa fa-edit icon" title="Editar"></i>
+                    </a>
+                </td>
+                <td class="excluir">
+                    <a th:href="@{'deletar/' + ${todo.getId()}}" onclick="return confirm('Tem certeza que deseja deletar?');">
+                        <i class="fa fa-trash icon" title="Deletar"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td colspan="2">
+                    <a class="link-criar" href="criar">Criar</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir ToDo</title>
+</head>
+<body>
+    <form action="deletar" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" th:value="${nome}">
+                    <br>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="todo : ${todos}">
+                    <td th:text="${todo.getId()}"></td>
+                    <td th:text="${todo.getNome()}"></td>
+                    <td th:text="${todo.getDescricao()}"></td>
+                    <td th:text="${todo.getPrioridade()}"></td>
+                    <td>
+                        <input type="checkbox" th:checked="${todo.isRealizado()}">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <button>EDITAR</button>
+    </form>
+</body>
+</html>
